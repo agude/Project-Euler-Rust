@@ -11,19 +11,16 @@ extern crate fibonacci;
 
 
 fn euler_002(limit: u64) -> u64 {
-    let mut n = 0;
-    let mut sum = 0;
-    loop {
-        let current_number = fibonacci::fibonacci_binet(n);
-        if current_number > limit {
-            break;
-        }
-        if current_number % 2 == 0 {
-            sum += current_number;
-        }
+    let mut sum: u64 = 0;
 
-        n += 1
-    }
+    // Run through all Fibonacci numbers using a iterator
+    for i in fibonacci::Fibonacci::new()
+        // Stopping after we hit the limit
+        .take_while(|x| (*x as u64) < limit)
+        // And only keeping those that are even
+        .filter(|x| x % 2 == 0) {
+            sum += i as u64;
+        }
 
     return sum;
 }
@@ -32,4 +29,15 @@ fn euler_002(limit: u64) -> u64 {
 fn main() {
     let answer = euler_002(4_000_000);
     println!("{}", answer);
+}
+
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_problem_001() {
+        assert_eq!(euler_002(4_000_000), 4613732);
+    }
 }

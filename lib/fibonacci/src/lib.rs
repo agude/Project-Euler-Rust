@@ -51,6 +51,47 @@ pub fn fibonacci_binet(n: u8) -> u64 {
 }
 
 
+pub struct Fibonacci {
+    minus_1: usize,
+    minus_2: usize,
+    call_count: usize,
+}
+
+impl Fibonacci {
+    pub fn new() -> Fibonacci {
+        return Fibonacci{
+            minus_1: 1,
+            minus_2: 0,
+            call_count: 0,
+        };
+    }
+}
+
+impl Iterator for Fibonacci {
+    type Item = usize;
+    fn next(&mut self) -> Option<Self::Item> {
+        // We handle the first two cases with hardcoded values, all the others we derive.
+        match self.call_count {
+            0 => {
+                self.call_count += 1;
+                return Some(0);
+            },
+            1 => {
+                self.call_count += 1;
+                return Some(1);
+            },
+            _ => self.call_count += 1,
+        }
+
+        // Calculate values
+        let current = self.minus_1 + self.minus_2;
+        self.minus_2 = self.minus_1;
+        self.minus_1 = current;
+
+        return Some(current);
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -89,5 +130,20 @@ mod tests {
     #[should_panic]
     fn test_invalid_fibonacci_binet() {
         fibonacci_binet(76);
+    }
+
+    #[test]
+    fn test_fibonacci_iter() {
+        let truth = vec![
+            0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987, 1597, 2584, 4181,
+            6765, 10946, 17711, 28657, 46368, 75025, 121393, 196418, 317811, 514229, 832040,
+            1346269, 2178309, 3524578, 5702887, 9227465, 14930352, 24157817, 39088169, 63245986,
+            102334155,
+        ];
+        let fib = Fibonacci::new();
+        for (i, val) in fib.take(truth.len()).enumerate() {
+            println!("{}: {}", i, val);
+            assert_eq!(truth[i], val);
+        }
     }
 }

@@ -1,8 +1,6 @@
 [package]
-name = "euler-rust"
+name = "primes"
 version = "0.1.0"
 authors = ["Alexander Gude <alex.public.account+ProjectEulerSolutions@gmail.com>"]
 
 [dependencies]
-fibonacci = { path = "lib/fibonacci" }
-primes = { path = "lib/primes" }

@@ -3,6 +3,14 @@ rust:
     - stable
     - beta
     - nightly
+script:
+  - cargo build --all
+  - cargo test --all --verbose
+  - cd lib/fibonacci
+  - cargo test --all --verbose
+  - cd ../primes
+  - cargo test --all --verbose
+
 matrix:
     allow_failures:
         - rust: nightly

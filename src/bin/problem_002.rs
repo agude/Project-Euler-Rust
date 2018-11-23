@@ -37,7 +37,7 @@ mod tests {
     use super::*;
 
     #[test]
-    fn test_problem_001() {
+    fn test_problem_002() {
         assert_eq!(euler_002(4_000_000), 4613732);
     }
 }

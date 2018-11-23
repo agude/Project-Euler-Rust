@@ -6,3 +6,4 @@ authors = ["Alexander Gude <alex.public.account+ProjectEulerSolutions@gmail.com>
 [dependencies]
 fibonacci = { path = "lib/fibonacci" }
 primes = { path = "lib/primes" }
+palindromic = { path = "lib/palindromic" }

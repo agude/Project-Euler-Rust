@@ -7,17 +7,17 @@ fn is_polygonal(number: u64, multiplier: u64, divisor: u64) -> bool {
 }
 
 
-fn is_triangular(number: u64) -> bool {
+pub fn is_triangular(number: u64) -> bool {
     return is_polygonal(number, 8, 2);
 }
 
 
-fn is_pentagonal(number: u64) -> bool {
+pub fn is_pentagonal(number: u64) -> bool {
     return is_polygonal(number, 24, 6);
 }
 
 
-fn is_hexagonal(number: u64) -> bool {
+pub fn is_hexagonal(number: u64) -> bool {
     return is_polygonal(number, 8, 4);
 }
 

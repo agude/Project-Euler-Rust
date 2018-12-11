@@ -14,27 +14,23 @@ extern crate polygonal;
 
 fn euler_045() -> u64 {
     /*
-     * We generate the hexagonal numbers using the formula provided: 
+     * We generate the hexagonal numbers using the formula provided:
      *
      *   n*(2*n-1)
-     * 
+     *
      * We then check if they are pentagonal, but we do not check if they are triangular as all
      * hexagonal numbers are by definition. We generate hexagonal numbers because there are fewer
      * of them, and therefore we have to check fewer numbers before finding the correct result.
      */
-    let mut n: u64 = 144; // H143 satisfies the conditions, so we start after
-
     // Try hexagonal numbers until we find a match
-    loop {
-        let num = n * (2 * n - 1);
-        // If it is also pentagonal, we're done
-        if polygonal::is_pentagonal(num) {
-            return num;
-        }
-        else {
-            n += 1;
+    for hex_number in (144..).map(|n| n * (2 * n - 1)) {
+        if polygonal::is_pentagonal(hex_number) {
+            return hex_number as u64;
         }
     }
+
+    // Failed
+    return 0;
 }
 
 

@@ -23,7 +23,7 @@ fn euler_045() -> u64 {
      * of them, and therefore we have to check fewer numbers before finding the correct result.
      */
     // Try hexagonal numbers until we find a match
-    for hex_number in (144..).map(|n| n * (2 * n - 1)) {
+    for hex_number in (144..).map(|n| polygonal::nth_hexagonal(n)) {
         if polygonal::is_pentagonal(hex_number) {
             return hex_number as u64;
         }

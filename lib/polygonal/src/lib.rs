@@ -12,13 +12,28 @@ pub fn is_triangular(number: u64) -> bool {
 }
 
 
+pub fn nth_triangular(n: usize) -> u64 {
+    return ((n * (n + 1)) / 2) as u64;
+}
+
+
 pub fn is_pentagonal(number: u64) -> bool {
     return is_polygonal(number, 24, 6);
 }
 
 
+pub fn nth_pentagonal(n: usize) -> u64 {
+    return ((3 * n * n  - n) / 2) as u64;
+}
+
+
 pub fn is_hexagonal(number: u64) -> bool {
     return is_polygonal(number, 8, 4);
+}
+
+
+pub fn nth_hexagonal(n: usize) -> u64 {
+    return (2 * n * (2 * n - 1) / 2) as u64;
 }
 
 
@@ -56,6 +71,21 @@ mod tests {
     }
 
     #[test]
+    fn test_nth_triangular() {
+        let triangulars: Vec<u64> = vec![
+            0, 1, 3, 6, 10, 15, 21, 28, 36, 45, 55, 66, 78, 91, 105, 120, 136, 153, 171, 190, 210,
+            231, 253, 276, 300, 325, 351, 378, 406, 435, 465, 496, 528, 561, 595, 630, 666, 703,
+            741, 780, 820, 861, 903, 946, 990, 1035, 1081, 1128, 1176, 1225, 1275, 1326, 1378,
+            1431,
+        ];
+
+        // Test ever number not in the set
+        for (n, triangular) in triangulars.iter().enumerate() {
+            assert_eq!(nth_triangular(n), *triangular);
+        }
+    }
+
+    #[test]
     fn test_is_pentagonal_true() {
         let truth = vec![
             1, 5, 12, 22, 35, 51, 70, 92, 117, 145, 176, 210, 247, 287, 330, 376, 425, 477, 532,
@@ -84,6 +114,21 @@ mod tests {
     }
 
     #[test]
+    fn test_nth_pentagonal() {
+        let pentagonals: Vec<u64> = vec![
+            0, 1, 5, 12, 22, 35, 51, 70, 92, 117, 145, 176, 210, 247, 287, 330, 376, 425, 477, 532,
+            590, 651, 715, 782, 852, 925, 1001, 1080, 1162, 1247, 1335, 1426, 1520, 1617, 1717,
+            1820, 1926, 2035, 2147, 2262, 2380, 2501, 2625, 2752, 2882, 3015, 3151, 3290, 3432,
+            3577, 3725, 3876, 4030, 4187,
+        ];
+
+        // Test ever number not in the set
+        for (n, pentagonal) in pentagonals.iter().enumerate() {
+            assert_eq!(nth_pentagonal(n), *pentagonal);
+        }
+    }
+
+    #[test]
     fn test_is_hexagonal_true() {
         let truth = vec![
             1, 6, 15, 28, 45, 66, 91, 120, 153, 190, 231, 276, 325, 378, 435, 496, 561, 630, 703,
@@ -107,6 +152,23 @@ mod tests {
         // Test ever number not in the set
         for i in (0..4560).filter(|x| !hexagonals.contains(x)) {
             assert_eq!(is_hexagonal(i), false);
+        }
+    }
+
+    #[test]
+    fn test_nth_hexagonal() {
+        let hexagonals: Vec<u64> = vec![
+            0, 1, 6, 15, 28, 45, 66, 91, 120, 153, 190, 231, 276, 325, 378, 435, 496, 561, 630, 703,
+            780, 861, 946, 1035, 1128, 1225, 1326, 1431, 1540, 1653, 1770, 1891, 2016, 2145, 2278,
+            2415, 2556, 2701, 2850, 3003, 3160, 3321, 3486, 3655, 3828, 4005, 4186, 4371, 4560,
+        ];
+
+        // Test ever number not in the set
+        for (n, hexagonal) in hexagonals.iter().enumerate() {
+            if n == 0 {
+                continue;
+            }
+            assert_eq!(nth_hexagonal(n), *hexagonal);
         }
     }
 }

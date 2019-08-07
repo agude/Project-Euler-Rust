@@ -4,6 +4,7 @@ version = "0.1.0"
 authors = ["Alexander Gude <alex.public.account+ProjectEulerSolutions@gmail.com>"]
 
 [dependencies]
+factorization = { path = "lib/factorization" }
 fibonacci = { path = "lib/fibonacci" }
 palindromic = { path = "lib/palindromic" }
 polygonal = { path = "lib/polygonal" }

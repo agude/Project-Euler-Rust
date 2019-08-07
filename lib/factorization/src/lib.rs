@@ -1,4 +1,5 @@
 pub fn proper_factors(number: u64) -> Vec<u64> {
+    // TODO [#1]: Check only up to the sqaure root
     return (1..number).filter(|&x| number % x == 0).collect();
 }
 

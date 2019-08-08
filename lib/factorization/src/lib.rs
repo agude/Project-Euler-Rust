@@ -1,6 +1,13 @@
 pub fn proper_factors(number: u64) -> Vec<u64> {
     // TODO [#1]: Check only up to the sqaure root
-    return (1..number).filter(|&x| number % x == 0).collect();
+    let mut output: Vec<u64> = vec![1];
+    for n in 2..number {
+        if number % n == 0 {
+            output.push(n)
+        }
+    }
+
+    return output;
 }
 
 pub fn number_of_proper_factors(number: u64) -> usize {

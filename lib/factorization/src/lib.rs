@@ -1,13 +1,24 @@
+use std::collections::BinaryHeap;
+
 pub fn proper_factors(number: u64) -> Vec<u64> {
-    // TODO [#1]: Check only up to the sqaure root
-    let mut output: Vec<u64> = vec![1];
-    for n in 2..number {
+    let mut heap = BinaryHeap::new();
+    heap.push(1);
+
+    // Integer square root
+    let limit: u64 = (number as f64).sqrt().floor() as u64;
+
+    for n in 2..=limit {
         if number % n == 0 {
-            output.push(n)
+            heap.push(n);
+
+            let other_factor: u64 = number / n;
+            if other_factor != n {
+                heap.push(other_factor);
+            }
         }
     }
 
-    return output;
+    return heap.into_sorted_vec();
 }
 
 pub fn number_of_proper_factors(number: u64) -> usize {

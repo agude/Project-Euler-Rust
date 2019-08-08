@@ -38,17 +38,8 @@ mod tests {
     use super::*;
 
     #[test]
-    fn test_problem_012_fast() {
-        // Final answer
-        assert_eq!(euler_012(5), 28);
-        assert_eq!(euler_012(10), 120);
-        assert_eq!(euler_012(100), 73_920);
-    }
-
-    // TODO [#1]: Enable this test
-    #[test] #[ignore]
     fn test_problem_012() {
         // Final answer
-        assert_eq!(euler_012(5), 76_576_500);
+        assert_eq!(euler_012(500), 76_576_500);
     }
 }

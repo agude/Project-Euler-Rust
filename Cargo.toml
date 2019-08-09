@@ -5,6 +5,7 @@ authors = ["Alexander Gude <alex.public.account+ProjectEulerSolutions@gmail.com>
 
 [dependencies]
 # Internal
+combinatorics = { path = "lib/combinatorics" }
 factorization = { path = "lib/factorization" }
 fibonacci = { path = "lib/fibonacci" }
 palindromic = { path = "lib/palindromic" }

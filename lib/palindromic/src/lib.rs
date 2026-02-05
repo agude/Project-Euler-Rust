@@ -1,16 +1,17 @@
 fn reverse(input: u64) -> u64 {
     let mut reversed: u64 = 0;
     let mut number = input;
+
     while number > 0 {
         reversed = 10 * reversed + number % 10;
         number = number / 10;
     }
 
-    return reversed;
+    reversed
 }
 
 pub fn is_palindromic(input: u64) -> bool {
-    return input == reverse(input);
+    input == reverse(input)
 }
 
 #[cfg(test)]
@@ -38,3 +39,4 @@ mod tests {
         assert_eq!(is_palindromic(123), false);
     }
 }
+

@@ -26,13 +26,13 @@ impl Chain {
     fn new() -> Self {
         let mut memoized: HashMap<u64, u64> = HashMap::new();
         memoized.insert(1, 1);
-        return Chain { memoized: memoized };
+        Chain { memoized }
     }
 
     fn check_memo(&self, number: u64) -> u64 {
-        return match self.memoized.get(&number) {
+        match self.memoized.get(&number) {
             Some(&length) => length,
-            _             => 0,
+            _ => 0,
         }
     }
 
@@ -46,7 +46,7 @@ impl Chain {
 
     fn get_length(&mut self, starting_number: u64) -> u64 {
         // First, see if we have the result stored
-        let cached_length = Self::check_memo(&self, starting_number);
+        let cached_length = Self::check_memo(self, starting_number);
         if cached_length > 0 {
             return cached_length;
         }
@@ -56,29 +56,27 @@ impl Chain {
 
         loop {
             // Compute the new result
-            let new_number = match modeable_number % 2 == 0 {
+            let new_number = match modeable_number.is_multiple_of(2) {
                 true => modeable_number / 2,
                 false => 3 * modeable_number + 1,
             };
 
-            let new_length = Self::check_memo(&self, new_number);
+            let new_length = Self::check_memo(self, new_number);
 
             if new_length > 0 {
                 // We found it! Unwind the stack
                 Self::unwind_stack(self, new_length, stack);
                 break;
-            }
-            else {
+            } else {
                 stack.push(new_number);
                 modeable_number = new_number;
             }
         }
         // Now that we have added the value, return it
-        let final_length = Self::check_memo(&self, starting_number);
-        return final_length;
+
+        Self::check_memo(self, starting_number)
     }
 }
-
 
 fn euler_014(max_number: usize) -> u64 {
     let mut chain = Chain::new();
@@ -91,15 +89,13 @@ fn euler_014(max_number: usize) -> u64 {
             best_start = number as u64;
         }
     }
-    return best_start;
+    best_start
 }
-
 
 fn main() {
     let answer = euler_014(1_000_000);
     println!("{}", answer);
 }
-
 
 #[cfg(test)]
 mod tests {

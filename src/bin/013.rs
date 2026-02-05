@@ -107,9 +107,8 @@ extern crate num;
 use num::BigUint;
 use num::Zero;
 
-
 fn get_numbers() -> Vec<BigUint> {
- return vec![
+    vec![
         BigUint::parse_bytes(b"37107287533902102798797998220837590246510135740250", 10).unwrap(),
         BigUint::parse_bytes(b"46376937677490009712648124896970078050417018260538", 10).unwrap(),
         BigUint::parse_bytes(b"74324986199524741059474233309513058123726617309629", 10).unwrap(),
@@ -210,9 +209,8 @@ fn get_numbers() -> Vec<BigUint> {
         BigUint::parse_bytes(b"72107838435069186155435662884062257473692284509516", 10).unwrap(),
         BigUint::parse_bytes(b"20849603980134001723930671666823555245252804609722", 10).unwrap(),
         BigUint::parse_bytes(b"53503534226472524250874054075591789781264330331690", 10).unwrap(),
-    ];
+    ]
 }
-
 
 fn euler_013(numbers: Vec<BigUint>) -> String {
     let mut sum: BigUint = Zero::zero();
@@ -221,19 +219,14 @@ fn euler_013(numbers: Vec<BigUint>) -> String {
         sum += number;
     }
 
-    let first_ten_digits = sum.to_string()[0..10].to_string();
-
-    return first_ten_digits;
+    sum.to_string()[0..10].to_string()
 }
 
-
 fn main() {
-
     let numbers = get_numbers();
     let answer = euler_013(numbers);
     println!("{}", answer);
 }
-
 
 #[cfg(test)]
 mod tests {

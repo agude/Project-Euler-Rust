@@ -11,7 +11,6 @@
  */
 use euler_rust::utils::polygonal;
 
-
 fn euler_045() -> u64 {
     /*
      * We generate the hexagonal numbers using the formula provided:
@@ -23,22 +22,20 @@ fn euler_045() -> u64 {
      * of them, and therefore we have to check fewer numbers before finding the correct result.
      */
     // Try hexagonal numbers until we find a match
-    for hex_number in (144..).map(|n| polygonal::nth_hexagonal(n)) {
+    for hex_number in (144..).map(polygonal::nth_hexagonal) {
         if polygonal::is_pentagonal(hex_number) {
-            return hex_number as u64;
+            return hex_number;
         }
     }
 
     // Failed
-    return 0;
+    0
 }
-
 
 fn main() {
     let answer = euler_045();
     println!("{}", answer);
 }
-
 
 #[cfg(test)]
 mod tests {

@@ -7,10 +7,7 @@
 use euler_rust::utils::primes;
 
 fn euler_007(nth_prime: usize) -> u64 {
-    match primes::Primes::new().nth(nth_prime) {
-        Some(x) => x,
-        None => 0,
-    }
+    primes::Primes::new().nth(nth_prime).unwrap_or_default()
 }
 
 fn main() {
@@ -27,4 +24,3 @@ mod tests {
         assert_eq!(euler_007(10_001), 104759);
     }
 }
-

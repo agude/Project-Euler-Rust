@@ -6,7 +6,6 @@
  */
 use euler_rust::utils::combinatorics;
 
-
 fn euler_015(max_num: u32) -> u128 {
     /*
      * We notice that we can encode a path as a binary number, where 1 means "right" and 0 means
@@ -14,15 +13,13 @@ fn euler_015(max_num: u32) -> u128 {
      * path we just need to specify the location of the 1s. The number of ways we can do this is 2n
      * choose n.
      */
-    return combinatorics::n_choose_k(2 * max_num, max_num);
+    combinatorics::n_choose_k(2 * max_num, max_num)
 }
-
 
 fn main() {
     let answer = euler_015(20);
     println!("{}", answer);
 }
-
 
 #[cfg(test)]
 mod tests {

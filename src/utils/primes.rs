@@ -1,14 +1,15 @@
 pub fn prime_sieve(max_number: u64) -> Vec<u64> {
-    if max_number < 2 { return Vec::new() };
+    if max_number < 2 {
+        return Vec::new();
+    };
 
     // Set up the sieve and output
     let mut is_prime: Vec<bool> = vec![true; (max_number + 1) as usize];
     let mut output_primes: Vec<u64> = Vec::new();
 
     // Handle small numbers
-    match max_number {
-        2 => return vec![2],
-        _ => (),
+    if max_number == 2 {
+        return vec![2];
     };
     is_prime[0] = false;
     is_prime[1] = false;
@@ -29,7 +30,7 @@ pub fn prime_sieve(max_number: u64) -> Vec<u64> {
         }
     }
 
-    return output_primes;
+    output_primes
 }
 
 pub fn prime_factors(number: u64) -> Vec<u64> {
@@ -47,7 +48,7 @@ pub fn prime_factors(number: u64) -> Vec<u64> {
     // divides through evenly.
     let primes = Primes::new();
     for prime in primes {
-        while div_number % prime == 0 {
+        while div_number.is_multiple_of(prime) {
             div_number /= prime;
             factors.push(prime);
 
@@ -63,7 +64,7 @@ pub fn prime_factors(number: u64) -> Vec<u64> {
         }
     }
 
-    return factors;
+    factors
 }
 
 pub struct Primes {
@@ -72,13 +73,19 @@ pub struct Primes {
     current_number: u64,
 }
 
+impl Default for Primes {
+    fn default() -> Self {
+        Self::new()
+    }
+}
+
 impl Primes {
     pub fn new() -> Primes {
-        return Primes {
+        Primes {
             first_run: true,
             not_primes: std::collections::HashMap::new(),
             current_number: 1,
-        };
+        }
     }
 }
 
@@ -114,7 +121,7 @@ impl Iterator for Primes {
                 let mut k = self.current_number + root_prime;
                 loop {
                     let k_not_prime = self.not_primes.contains_key(&k);
-                    let k_is_even = k % 2 == 0;
+                    let k_is_even = k.is_multiple_of(2);
                     if k_not_prime || k_is_even {
                         k += root_prime;
                     } else {
@@ -127,6 +134,7 @@ impl Iterator for Primes {
     }
 }
 
+#[allow(dead_code)]
 fn is_prime(input: u64) -> bool {
     if input < 2 {
         // 0, 1 and negative are not prime
@@ -134,13 +142,13 @@ fn is_prime(input: u64) -> bool {
     } else if input < 4 {
         // 3 is prime
         true
-    } else if input % 2 == 0 {
+    } else if input.is_multiple_of(2) {
         // even numbers are not prime
         false
     } else if input < 9 {
         // 6, 8 has been removed above
         true
-    } else if input % 3 == 0 {
+    } else if input.is_multiple_of(3) {
         // numbers divisible by 3 are not prime
         false
     } else {
@@ -148,13 +156,10 @@ fn is_prime(input: u64) -> bool {
         let mut f: u64 = 5;
 
         while f <= floor_root {
-            if input % f == 0 {
+            if input.is_multiple_of(f) || input.is_multiple_of(f + 2) {
                 return false;
-            } else if (input % (f + 2)) == 0 {
-                return false;
-            } else {
-                f += 6;
             }
+            f += 6;
         }
         true
     }
@@ -241,4 +246,3 @@ mod tests {
         }
     }
 }
-

@@ -8,7 +8,7 @@ pub fn proper_factors(number: u64) -> Vec<u64> {
     let limit: u64 = (number as f64).sqrt().floor() as u64;
 
     for n in 2..=limit {
-        if number % n == 0 {
+        if number.is_multiple_of(n) {
             heap.push(n);
 
             let other_factor: u64 = number / n;
@@ -18,15 +18,15 @@ pub fn proper_factors(number: u64) -> Vec<u64> {
         }
     }
 
-    return heap.into_sorted_vec();
+    heap.into_sorted_vec()
 }
 
 pub fn number_of_proper_factors(number: u64) -> usize {
-    return proper_factors(number).len();
+    proper_factors(number).len()
 }
 
 pub fn number_of_factors(number: u64) -> usize {
-    return number_of_proper_factors(number) + 1;
+    number_of_proper_factors(number) + 1
 }
 
 #[cfg(test)]

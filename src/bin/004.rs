@@ -6,29 +6,24 @@
  */
 use euler_rust::utils::palindromic;
 
-
 fn euler_004() -> u32 {
     let mut current_palindrome: u32 = 0;
     for i in 100..999 {
         for j in 100..999 {
             let test_number = i * j;
-            if test_number > current_palindrome {
-                if palindromic::is_palindromic(test_number as u64) {
-                    current_palindrome = test_number;
-                }
+            if test_number > current_palindrome && palindromic::is_palindromic(test_number as u64) {
+                current_palindrome = test_number;
             }
         }
     }
 
-    return current_palindrome;
+    current_palindrome
 }
-
 
 fn main() {
     let answer = euler_004();
     println!("{}", answer);
 }
-
 
 #[cfg(test)]
 mod tests {

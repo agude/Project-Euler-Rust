@@ -4,7 +4,7 @@ fn reverse(input: u64) -> u64 {
 
     while number > 0 {
         reversed = 10 * reversed + number % 10;
-        number = number / 10;
+        number /= 10;
     }
 
     reversed
@@ -39,4 +39,3 @@ mod tests {
         assert_eq!(is_palindromic(123), false);
     }
 }
-

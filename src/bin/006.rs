@@ -13,15 +13,13 @@ fn euler_006() -> u32 {
     // ( 1^2 + 2^2 + ... + 100^2)
     let squared_sum: u32 = (1..=100).map(|x| (x as u32).pow(2)).sum();
 
-    return sum_squared - squared_sum;
+    sum_squared - squared_sum
 }
-
 
 fn main() {
     let answer = euler_006();
     println!("{}", answer);
 }
-
 
 #[cfg(test)]
 mod tests {

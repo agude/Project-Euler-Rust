@@ -5,18 +5,15 @@
  */
 use euler_rust::utils::primes;
 
-
 fn euler_010(max_prime: u64) -> u64 {
     let answer = primes::prime_sieve(max_prime).iter().sum();
-    return answer;
+    answer
 }
-
 
 fn main() {
     let answer = euler_010(2_000_000);
     println!("{}", answer);
 }
-
 
 #[cfg(test)]
 mod tests {

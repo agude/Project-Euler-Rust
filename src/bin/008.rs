@@ -23,10 +23,9 @@
  * 71636269561882670428252483600823257530420752963450
  */
 
-
 fn euler_008() -> u16 {
     // We hardcode the number as an array of digits
-    let number: Vec<u16> = vec!(
+    let number: Vec<u16> = vec![
         7, 3, 1, 6, 7, 1, 7, 6, 5, 3, 1, 3, 3, 0, 6, 2, 4, 9, 1, 9, 2, 2, 5, 1, 1, 9, 6, 7, 4, 4,
         2, 6, 5, 7, 4, 7, 4, 2, 3, 5, 5, 3, 4, 9, 1, 9, 4, 9, 3, 4, 9, 6, 9, 8, 3, 5, 2, 0, 3, 1,
         2, 7, 7, 4, 5, 0, 6, 3, 2, 6, 2, 3, 9, 5, 7, 8, 3, 1, 8, 0, 1, 6, 9, 8, 4, 8, 0, 1, 8, 6,
@@ -61,24 +60,23 @@ fn euler_008() -> u16 {
         8, 3, 1, 5, 5, 2, 0, 0, 0, 5, 5, 9, 3, 5, 7, 2, 9, 7, 2, 5, 7, 1, 6, 3, 6, 2, 6, 9, 5, 6,
         1, 8, 8, 2, 6, 7, 0, 4, 2, 8, 2, 5, 2, 4, 8, 3, 6, 0, 0, 8, 2, 3, 2, 5, 7, 5, 3, 0, 4, 2,
         0, 7, 5, 2, 9, 6, 3, 4, 5, 0,
-    );
+    ];
 
     // Find the largest sum
     let mut product: u16 = 0;
     for i in 0..996 {
-        let test_product: u16 = number[i] * number[i + 1] * number[i + 2] * number[i + 3] * number[i + 4];
+        let test_product: u16 =
+            number[i] * number[i + 1] * number[i + 2] * number[i + 3] * number[i + 4];
         product = std::cmp::max(product, test_product);
     }
 
-    return product;
+    product
 }
-
 
 fn main() {
     let answer = euler_008();
     println!("{}", answer);
 }
-
 
 #[cfg(test)]
 mod tests {

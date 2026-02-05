@@ -9,7 +9,6 @@
  */
 use euler_rust::utils::fibonacci;
 
-
 fn euler_002(limit: u64) -> u64 {
     let mut sum: u64 = 0;
 
@@ -18,19 +17,18 @@ fn euler_002(limit: u64) -> u64 {
         // Stopping after we hit the limit
         .take_while(|x| (*x as u64) < limit)
         // And only keeping those that are even
-        .filter(|x| x % 2 == 0) {
-            sum += i as u64;
-        }
+        .filter(|x| x % 2 == 0)
+    {
+        sum += i as u64;
+    }
 
-    return sum;
+    sum
 }
-
 
 fn main() {
     let answer = euler_002(4_000_000);
     println!("{}", answer);
 }
-
 
 #[cfg(test)]
 mod tests {

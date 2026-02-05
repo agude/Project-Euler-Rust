@@ -34,13 +34,19 @@ pub struct Fibonacci {
     call_count: usize,
 }
 
+impl Default for Fibonacci {
+    fn default() -> Self {
+        Self::new()
+    }
+}
+
 impl Fibonacci {
     pub fn new() -> Fibonacci {
-        return Fibonacci {
+        Fibonacci {
             minus_1: 1,
             minus_2: 0,
             call_count: 0,
-        };
+        }
     }
 }
 
@@ -65,7 +71,7 @@ impl Iterator for Fibonacci {
         self.minus_2 = self.minus_1;
         self.minus_1 = current;
 
-        return Some(current);
+        Some(current)
     }
 }
 
@@ -92,9 +98,7 @@ mod tests {
         assert_eq!(fibonaccis(2), vec![0, 1, 1]);
         assert_eq!(
             fibonaccis(16),
-            vec![
-                0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987
-            ]
+            vec![0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987]
         );
     }
 
@@ -113,4 +117,3 @@ mod tests {
         }
     }
 }
-

@@ -6,8 +6,6 @@
  *
  * There exists exactly one Pythagorean triplet for which a + b + c = 1000. Find the product abc.
  */
-use euler_rust::utils::primes;
-
 
 fn euler_009(target: u32) -> (u32, u32, u32) {
     // We make all possible Pythagorean triplets that satisfy the conditions
@@ -20,21 +18,19 @@ fn euler_009(target: u32) -> (u32, u32, u32) {
             let a = target - b - c;
 
             // Test if we have a valid triplet
-            if (a*a) + (b*b) == (c*c) {
+            if (a * a) + (b * b) == (c * c) {
                 return (a, b, c);
             }
         }
     }
 
-    return (0, 0, 0);
+    (0, 0, 0)
 }
-
 
 fn main() {
     let (a, b, c) = euler_009(1000);
     println!("{} {} {}", a, b, c);
 }
-
 
 #[cfg(test)]
 mod tests {

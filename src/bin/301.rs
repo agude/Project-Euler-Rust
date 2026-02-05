@@ -24,8 +24,6 @@
  *
  * For how many positive integers n <= 2**30 does X(n, 2n, 3n) = 0 ?
  */
-use euler_rust::utils::primes;
-
 
 fn euler_301(limit: u64) -> u64 {
     let mut answer = 0;
@@ -35,18 +33,16 @@ fn euler_301(limit: u64) -> u64 {
         if a ^ b ^ c == 0 {
             answer += 1;
         }
-    };
+    }
 
-    return answer;
+    answer
 }
-
 
 fn main() {
     const INPUT: u64 = 1_073_741_824;
     let answer = euler_301(INPUT);
     println!("{}", answer);
 }
-
 
 #[cfg(test)]
 mod tests {
@@ -57,7 +53,8 @@ mod tests {
         assert_eq!(euler_301(10_000_000), 103_681);
     }
 
-    #[test] #[ignore] // Takes a while to run
+    #[test]
+    #[ignore] // Takes a while to run
     fn test_problem_301() {
         assert_eq!(euler_301(1_073_741_824), 2_178_309);
     }

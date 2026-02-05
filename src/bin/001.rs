@@ -6,20 +6,15 @@
  */
 
 fn euler_001(max: u32) -> u32 {
+    let sum: u32 = (1..max).filter(|x| x % 3 == 0 || x % 5 == 0).sum();
 
-    let sum: u32 =  (1..max)
-        .filter(|x| x % 3 == 0 || x % 5 == 0)
-        .sum();
-
-    return sum;
+    sum
 }
-
 
 fn main() {
     let answer = euler_001(1000);
     println!("{}", answer);
 }
-
 
 #[cfg(test)]
 mod tests {

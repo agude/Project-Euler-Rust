@@ -13,13 +13,13 @@ pub fn n_choose_k(n: u32, k: u32) -> u128 {
     }
 
     // Factorial functions overflow very easily, so we cancel first
-    let bottom = max(k, n-k);
-    let other  = min(k, n-k);
+    let bottom = max(k, n - k);
+    let other = min(k, n - k);
 
     let ratio = factorial_ratio(n, bottom);
     let denominator = factorial(other);
 
-    return ratio / denominator;
+    ratio / denominator
 }
 
 pub fn factorial_ratio(top: u32, bottom: u32) -> u128 {
@@ -27,7 +27,7 @@ pub fn factorial_ratio(top: u32, bottom: u32) -> u128 {
         let start = (bottom + 1) as u128;
         return (start..=top as u128).product();
     }
-    return 0;
+    0
 }
 
 pub fn factorial(n: u32) -> u128 {
@@ -36,7 +36,6 @@ pub fn factorial(n: u32) -> u128 {
         _ => (1..=n as u128).product(),
     }
 }
-
 
 #[cfg(test)]
 mod tests {
@@ -50,7 +49,7 @@ mod tests {
         assert_eq!(
             factorial(34),
             295_232_799_039_604_140_847_618_609_643_520_000_000
-            );
+        );
     }
 
     #[test]

@@ -13,7 +13,7 @@ fn euler_005() -> u32 {
      * By incrementing by 20 * 19 * 17 * 13 * 11, we insure that the number is divisible by those
      * numbers (and since they are co-prime we don't skip any numbers).
      */
-    let divisors = vec![18, 16, 15, 14, 12];
+    let divisors = [18, 16, 15, 14, 12];
     let increment = 20 * 19 * 17 * 13 * 11;
 
     let mut test_number = increment;
@@ -24,7 +24,7 @@ fn euler_005() -> u32 {
                 test_number += increment;
                 break;
             }
-            // All test passed, so this number is the one 
+            // All test passed, so this number is the one
             else if divisor == 12 {
                 return test_number;
             }
@@ -32,12 +32,10 @@ fn euler_005() -> u32 {
     }
 }
 
-
 fn main() {
     let answer = euler_005();
     println!("{}", answer);
 }
-
 
 #[cfg(test)]
 mod tests {

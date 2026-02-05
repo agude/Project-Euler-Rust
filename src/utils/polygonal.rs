@@ -3,7 +3,7 @@ fn is_polygonal(number: u64, multiplier: u64, divisor: u64) -> bool {
     let test_num = sqrt_test / divisor as f64;
 
     // If the test_num is positive and integral, the number is polygonal
-    test_num.is_sign_positive() & (test_num.floor() == test_num)
+    test_num.is_sign_positive() & (test_num.fract() == 0.0)
 }
 
 pub fn is_triangular(number: u64) -> bool {

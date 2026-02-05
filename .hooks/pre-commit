@@ -1,0 +1,28 @@
+#!/bin/sh
+# Auto-format staged Rust files before commit
+
+# Check if cargo fmt is available
+if ! command -v cargo >/dev/null 2>&1; then
+    echo "cargo not found, skipping format"
+    exit 0
+fi
+
+# Get staged .rs files
+staged_rs=$(git diff --cached --name-only --diff-filter=ACM | grep '\.rs$')
+
+if [ -n "$staged_rs" ]; then
+    # Format only staged Rust files
+    echo "$staged_rs" | xargs cargo fmt --
+
+    # Re-stage formatted files
+    echo "$staged_rs" | xargs git add
+
+    # Run clippy on staged Rust files
+    echo "Running clippy..."
+    if ! cargo clippy -- -D warnings; then
+        echo "clippy check failed, aborting commit"
+        exit 1
+    fi
+fi
+
+exit 0

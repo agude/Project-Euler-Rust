@@ -24,7 +24,7 @@
  *
  * For how many positive integers n <= 2**30 does X(n, 2n, 3n) = 0 ?
  */
-extern crate primes;
+use euler_rust::utils::primes;
 
 
 fn euler_301(limit: u64) -> u64 {

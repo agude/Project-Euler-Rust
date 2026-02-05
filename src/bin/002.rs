@@ -7,7 +7,7 @@
  * By considering the terms in the Fibonacci sequence whose values do not exceed four million, find
  * the sum of the even-valued terms.
  */
-extern crate fibonacci;
+use euler_rust::utils::fibonacci;
 
 
 fn euler_002(limit: u64) -> u64 {

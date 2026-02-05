@@ -4,7 +4,7 @@
  *
  * Find the largest palindrome made from the product of two 3-digit numbers.
  */
-extern crate palindromic;
+use euler_rust::utils::palindromic;
 
 
 fn euler_004() -> u32 {

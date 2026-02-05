@@ -4,7 +4,7 @@
  *
  * How many such routes are there through a 20x20 grid?
  */
-extern crate combinatorics;
+use euler_rust::utils::combinatorics;
 
 
 fn euler_015(max_num: u32) -> u128 {

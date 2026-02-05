@@ -18,8 +18,8 @@
  *
  * What is the value of the first triangle number to have over five hundred divisors?
  */
-extern crate polygonal;
-extern crate factorization;
+use euler_rust::utils::polygonal;
+use euler_rust::utils::factorization;
 
 fn euler_012(number: usize) -> i64 {
     let mut triangulars: polygonal::Polygonals = polygonal::get_triangulars_iterator(0);

@@ -3,7 +3,7 @@
  *
  * Find the sum of all the primes below two million.
  */
-extern crate primes;
+use euler_rust::utils::primes;
 
 
 fn euler_010(max_prime: u64) -> u64 {

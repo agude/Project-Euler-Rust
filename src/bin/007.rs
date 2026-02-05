@@ -4,22 +4,19 @@
  *
  * What is the 10,001st prime number?
  */
-extern crate primes;
-
+use euler_rust::utils::primes;
 
 fn euler_007(nth_prime: usize) -> u64 {
     match primes::Primes::new().nth(nth_prime) {
         Some(x) => x,
-        None    => 0,
+        None => 0,
     }
 }
-
 
 fn main() {
     let answer = euler_007(10_001);
     println!("{}", answer);
 }
-
 
 #[cfg(test)]
 mod tests {
@@ -30,3 +27,4 @@ mod tests {
         assert_eq!(euler_007(10_001), 104759);
     }
 }
+

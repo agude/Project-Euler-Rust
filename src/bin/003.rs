@@ -3,7 +3,7 @@
  * 
  * What is the largest prime factor of the number 600851475143?
  */
-extern crate primes;
+use euler_rust::utils::primes;
 
 
 fn euler_003(input: u64) -> u64 {

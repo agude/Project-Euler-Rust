@@ -27,7 +27,6 @@ pub fn factorial_ratio(top: u32, bottom: u32) -> u128 {
         let start = (bottom + 1) as u128;
         return (start..=top as u128).product();
     }
-    // TODO [#2]:
     return 0;
 }
 

@@ -9,7 +9,7 @@
  *
  * Find the next triangle number that is also pentagonal and hexagonal.
  */
-extern crate polygonal;
+use euler_rust::utils::polygonal;
 
 
 fn euler_045() -> u64 {

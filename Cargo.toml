@@ -2,14 +2,8 @@
 name = "euler-rust"
 version = "0.1.0"
 authors = ["Alexander Gude <alex.public.account+ProjectEulerSolutions@gmail.com>"]
+edition = "2021"
 
 [dependencies]
-# Internal
-combinatorics = { path = "lib/combinatorics" }
-factorization = { path = "lib/factorization" }
-fibonacci = { path = "lib/fibonacci" }
-palindromic = { path = "lib/palindromic" }
-polygonal = { path = "lib/polygonal" }
-primes = { path = "lib/primes" }
-# External
-num = "0.2"
+# Used in 013.rs (BigUint)
+num = "0.4"

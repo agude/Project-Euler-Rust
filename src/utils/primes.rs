@@ -1,13 +1,13 @@
 pub fn prime_sieve(max_number: u64) -> Vec<u64> {
+    if max_number < 2 { return Vec::new() };
+
     // Set up the sieve and output
-    let mut is_prime: Vec<bool> = vec![true; (max_number+1) as usize];
+    let mut is_prime: Vec<bool> = vec![true; (max_number + 1) as usize];
     let mut output_primes: Vec<u64> = Vec::new();
 
     // Handle small numbers
     match max_number {
-        0 => return vec![],
-        1 => return vec![],
-        2 => return vec![2,],
+        2 => return vec![2],
         _ => (),
     };
     is_prime[0] = false;
@@ -31,7 +31,6 @@ pub fn prime_sieve(max_number: u64) -> Vec<u64> {
 
     return output_primes;
 }
-
 
 pub fn prime_factors(number: u64) -> Vec<u64> {
     // Handle small numbers
@@ -67,7 +66,6 @@ pub fn prime_factors(number: u64) -> Vec<u64> {
     return factors;
 }
 
-
 pub struct Primes {
     first_run: bool,
     not_primes: std::collections::HashMap<u64, u64>,
@@ -75,8 +73,8 @@ pub struct Primes {
 }
 
 impl Primes {
-    pub fn new () -> Primes {
-        return Primes{
+    pub fn new() -> Primes {
+        return Primes {
             first_run: true,
             not_primes: std::collections::HashMap::new(),
             current_number: 1,
@@ -101,15 +99,17 @@ impl Iterator for Primes {
 
             let root_prime: u64 = match self.not_primes.get(&self.current_number) {
                 Some(&x) => x,
-                None     => 0,
+                None => 0,
             };
 
             // Our number is prime, since it's not in the not_primes hashmap
             if root_prime == 0 {
-                self.not_primes.insert(self.current_number * self.current_number, self.current_number);
+                self.not_primes.insert(
+                    self.current_number * self.current_number,
+                    self.current_number,
+                );
                 return Some(self.current_number);
-            }
-            else {
+            } else {
                 // Out number is not prime, so add some more masks to the not_primes hashmap.
                 let mut k = self.current_number + root_prime;
                 loop {
@@ -123,22 +123,26 @@ impl Iterator for Primes {
                 }
                 self.not_primes.insert(k, root_prime);
             }
-        };
+        }
     }
 }
 
-
 fn is_prime(input: u64) -> bool {
-    if input < 2 {  // 0, 1 and negative are not prime
-        return false;
-    } else if input < 4 {  // 3 is prime
-        return true;
-    } else if input % 2 == 0 {  // even numbers are not prime
-        return false;
-    } else if input < 9 {  // 6, 8 has been removed above
-        return true;
-    } else if input % 3 == 0 {  // numbers divisible by 3 are not prime
-        return false;
+    if input < 2 {
+        // 0, 1 and negative are not prime
+        false
+    } else if input < 4 {
+        // 3 is prime
+        true
+    } else if input % 2 == 0 {
+        // even numbers are not prime
+        false
+    } else if input < 9 {
+        // 6, 8 has been removed above
+        true
+    } else if input % 3 == 0 {
+        // numbers divisible by 3 are not prime
+        false
     } else {
         let floor_root: u64 = (input as f64).sqrt().floor() as u64;
         let mut f: u64 = 5;
@@ -152,10 +156,9 @@ fn is_prime(input: u64) -> bool {
                 f += 6;
             }
         }
-        return true;
+        true
     }
 }
-
 
 #[cfg(test)]
 mod tests {
@@ -238,3 +241,4 @@ mod tests {
         }
     }
 }
+
